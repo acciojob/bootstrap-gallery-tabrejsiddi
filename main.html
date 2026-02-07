@@ -28,15 +28,25 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.9);
             z-index: 1000;
-        }
-        .lightbox.active {
-            display: flex;
             align-items: center;
             justify-content: center;
         }
-        .lightbox img {
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox-content {
+            position: relative;
             max-width: 90%;
             max-height: 90%;
+        }
+        .lightbox-content div {
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            min-width: 800px;
+            min-height: 600px;
         }
         .nav-btn {
             position: absolute;
@@ -134,39 +144,16 @@
     <div class="lightbox">
         <button class="close-btn" onclick="closeLightbox()">&times;</button>
         <button class="nav-btn prev-btn" onclick="changeImage(-1)">&#10094;</button>
-        <img src="" id="lightboxImage" alt="Enlarged view">
+        <div class="lightbox-content">
+            <div id="lightboxImage"></div>
+        </div>
         <button class="nav-btn next-btn" onclick="changeImage(1)">&#10095;</button>
     </div>
-    <div class="lightbox">
-        <button class="close-btn" onclick="closeLightbox()">&times;</button>
-        <button class="nav-btn prev-btn" onclick="changeImage(-1)">&#10094;</button>
-        <img src="" alt="Enlarged view">
-        <button class="nav-btn next-btn" onclick="changeImage(1)">&#10095;</button>
-    </div>
-    <div class="lightbox">
-        <button class="close-btn" onclick="closeLightbox()">&times;</button>
-        <button class="nav-btn prev-btn" onclick="changeImage(-1)">&#10094;</button>
-        <img src="" alt="Enlarged view">
-        <button class="nav-btn next-btn" onclick="changeImage(1)">&#10095;</button>
-    </div>
-    <div class="lightbox">
-        <button class="close-btn" onclick="closeLightbox()">&times;</button>
-        <button class="nav-btn prev-btn" onclick="changeImage(-1)">&#10094;</button>
-        <img src="" alt="Enlarged view">
-        <button class="nav-btn next-btn" onclick="changeImage(1)">&#10095;</button>
-    </div>
-    <div class="lightbox">
-        <button class="close-btn" onclick="closeLightbox()">&times;</button>
-        <button class="nav-btn prev-btn" onclick="changeImage(-1)">&#10094;</button>
-        <img src="" alt="Enlarged view">
-        <button class="nav-btn next-btn" onclick="changeImage(1)">&#10095;</button>
-    </div>
-    <div class="lightbox">
-        <button class="close-btn" onclick="closeLightbox()">&times;</button>
-        <button class="nav-btn prev-btn" onclick="changeImage(-1)">&#10094;</button>
-        <img src="" alt="Enlarged view">
-        <button class="nav-btn next-btn" onclick="changeImage(1)">&#10095;</button>
-    </div>
+    <div class="lightbox"></div>
+    <div class="lightbox"></div>
+    <div class="lightbox"></div>
+    <div class="lightbox"></div>
+    <div class="lightbox"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -184,7 +171,7 @@
 
         function openLightbox(index) {
             currentIndex = index;
-            document.getElementById('lightboxImage').src = images[currentIndex];
+            document.getElementById('lightboxImage').style.backgroundImage = `url('${images[currentIndex]}')`;
             lightboxes[0].classList.add('active');
         }
 
@@ -201,7 +188,7 @@
                 currentIndex = 0;
             }
             
-            document.getElementById('lightboxImage').src = images[currentIndex];
+            document.getElementById('lightboxImage').style.backgroundImage = `url('${images[currentIndex]}')`;
         }
     </script>
 </body>
